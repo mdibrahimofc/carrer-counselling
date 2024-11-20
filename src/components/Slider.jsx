@@ -2,7 +2,6 @@
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import slide1pic from "../assets/pexels-fauxels-3184422.jpg"
 
 // Import Swiper styles
 import 'swiper/css';

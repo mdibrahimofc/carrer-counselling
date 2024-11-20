@@ -1,22 +1,19 @@
 import React, { Children, createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null)
 const ContextApi = ({children}) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        onAuthStateChanged(auth, (currentUser) => {
-            if(user){
-                setUser(currentUser)
-                setLoading(false)
-            }
-            else{
-                setUser(null)
-            }
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setLoading(false)
+            setUser(currentUser)
+            // console.log(user);
         })
+        return () => unsubscribe()
     }, [])
 
     const createAccount = (email, password) => {
@@ -24,10 +21,27 @@ const ContextApi = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+    const profileUpdate = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          })
+    }
+
+    const login = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const logout = () => {
+        signOut(auth)
+    }
+
     const googleProvider = new GoogleAuthProvider()
 
     const signInGoogle = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
+        
     }
 
     const AuthInfo = {
@@ -35,6 +49,9 @@ const ContextApi = ({children}) => {
         loading,
         user,
         signInGoogle,
+        login,
+        profileUpdate,
+        logout,
     }
     return (
         <AuthContext.Provider value={AuthInfo}>

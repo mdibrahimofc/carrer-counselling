@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData, useParams } from "react-router-dom";
 
 const ServiceDetails = () => {
-    const [Feedback, setFeedback] = useState([])
+  const [Feedback, setFeedback] = useState([]);
   const params = useParams();
   const id = params.id;
   const AllData = useLoaderData();
@@ -19,12 +20,15 @@ const ServiceDetails = () => {
     description,
   } = details;
   const handleFeedback = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const comment = e.target.comment.value;
-    setFeedback([...Feedback, comment])
-  }
+    setFeedback([...Feedback, comment]);
+  };
   return (
     <div>
+      <Helmet>
+        <title>Service Details || Carrer Goals</title>
+      </Helmet>
       {/* <div>
                 <img src={image} alt="" />
             </div> */}
@@ -70,21 +74,25 @@ const ServiceDetails = () => {
           {/* Action Button */}
           <div className="my-4">
             <p className="text-xl font-semibold">Your feed is appear here...</p>
-            {Feedback.map((f, id) => <p className="text-gray-500 font-medium" key={id}>{f}</p>)}
+            {Feedback.map((f, id) => (
+              <p className="text-gray-500 font-medium" key={id}>
+                {f}
+              </p>
+            ))}
           </div>
           <div className="mt-6">
             <p className="text-green-600 font-medium">Share your opinions</p>
-           <form onSubmit={handleFeedback}>
-           <div className="flex justify-start items-center gap-4">
-           <input
-              type="text"
-              name="comment"
-              placeholder="Type here"
-              className="input input-bordered input-lg w-full max-w-xs"
-            />
-            <button className="btn btn-primary">Feedback</button>
-           </div>
-           </form>
+            <form onSubmit={handleFeedback}>
+              <div className="flex justify-start items-center gap-4">
+                <input
+                  type="text"
+                  name="comment"
+                  placeholder="Type here"
+                  className="input input-bordered input-lg w-full max-w-xs"
+                />
+                <button className="btn btn-primary">Feedback</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

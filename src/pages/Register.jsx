@@ -3,41 +3,62 @@ import { AuthContext } from "../contextapi/ContextApi";
 import loginImg from "../assets/original-0c14504bd291054d76548cb015dff89a.png";
 import { Link } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-import swal from 'sweetalert';
+import swal from "sweetalert";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [uppercase, setUppercase] = useState(false)
-  const { createAccount } = useContext(AuthContext);
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState("");
+  const [uppercase, setUppercase] = useState(false);
+  const [lowercase, setLowercase] = useState(false);
+  const [minLength, setMinLength] = useState(false);
+
+  const { createAccount, profileUpdate } = useContext(AuthContext);
+
   const handleRegister = (e) => {
     e.preventDefault();
     const { name, photo, checkbox, email, password } = e.target;
+
     if (!checkbox.checked) {
-      swal("You must accept our terms and condition to procceed");
+      swal("You must accept our terms and conditions to proceed.");
       return;
     }
-    createAccount(email.value, password.value).then((res) => {
-      console.log(res.user);
-    });
+
+    createAccount(email.value, password.value)
+      .then((res) => {
+        console.log(res.user);
+        profileUpdate(name.value, photo.value)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      })
+      .catch((err) => {
+        console.error("Error creating account:", err);
+      });
   };
-  const handleChange = (e) => {
-    const passwordValue = e.target.value
-    console.log(passwordValue);
-    setPassword(passwordValue)
-    console.log(password);
-  }
-  const handlePasswordValidate = () => {
-    const regexU = /^(?=.*[A-Z]).+$/; // Regex for at least one uppercase letter
-    if (regexU.test(password)) { // Use regex.test() to check the password
-      setUppercase(true);
-    } else {
-      setUppercase(false);
-    }
+
+  const handlePasswordChange = (e) => {
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+
+    // Validate password rules
+    const regexUppercase = /^(?=.*[A-Z]).+$/;
+    const regexLowercase = /^(?=.*[a-z]).+$/;
+    const regexMinLength = /^.{6,}$/;
+
+    setUppercase(regexUppercase.test(passwordValue));
+    setLowercase(regexLowercase.test(passwordValue));
+    setMinLength(regexMinLength.test(passwordValue));
   };
-  
+
   return (
     <div className="flex h-screen bg-[#E9E9E9]">
+      <Helmet>
+        <title>Register || Carrer Goals</title>
+      </Helmet>
       <div className="hidden md:flex w-1/2 justify-center items-center">
         <img src={loginImg} alt="Graphic" className="object-cover" />
       </div>
@@ -97,8 +118,8 @@ const Register = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  onClick={handlePasswordValidate}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={handlePasswordChange}
                   placeholder="Enter your password"
                   required
                   className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-black"
@@ -110,11 +131,19 @@ const Register = () => {
                   {showPassword ? <FaEyeSlash /> : <FaRegEye />}
                 </span>
               </div>
-              {
-                password && <div>
-                  <p className={uppercase && 'text-green-600'}>Must have an Uppercase letter in the password</p>
+              {password && (
+                <div className="mt-2 space-y-1">
+                  <p className={uppercase ? "text-green-600" : "text-red-600"}>
+                    Must have an Uppercase letter in the password
+                  </p>
+                  <p className={lowercase ? "text-green-600" : "text-red-600"}>
+                    Must have a Lowercase letter in the password
+                  </p>
+                  <p className={minLength ? "text-green-600" : "text-red-600"}>
+                    Length must be at least 6 characters
+                  </p>
                 </div>
-              }
+              )}
             </div>
 
             <div>
@@ -128,13 +157,18 @@ const Register = () => {
               </label>
             </div>
 
-            <button className="btn btn-primary w-full">Sign Up</button>
+            <button
+              className="btn btn-primary w-full"
+              disabled={!(uppercase && lowercase && minLength)}
+            >
+              Sign Up
+            </button>
           </form>
 
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-primary hover:underline">
-              Sign Up
+              Login
             </Link>
           </p>
         </div>
