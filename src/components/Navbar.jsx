@@ -63,12 +63,10 @@ const Navbar = () => {
         </NavLink>
       </div>
 
-      {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-4">{links}</ul>
       </div>
 
-      {/* Navbar End */}
       <div className="navbar-end">
         {user ? (
           <div className="flex items-center space-x-4">

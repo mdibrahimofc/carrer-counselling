@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../contextapi/ContextApi";
 import { updateProfile } from "firebase/auth";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import swal from 'sweetalert';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -12,17 +13,17 @@ const Profile = () => {
 
   const handleUpdate = async () => {
     if (!name.trim() || !photoURL.trim()) {
-      toast.error("Name and Photo URL cannot be empty.");
+      swal("Name and Photo URL cannot be empty.");
       return;
     }
 
     setLoading(true);
     try {
       await updateProfile(user, { displayName: name, photoURL });
-      toast.success("Profile updated successfully!");
+      swal("Profile updated successfully!");
       setEditMode(false); // Exit edit mode
     } catch (error) {
-      toast.error("Failed to update profile. Try again.");
+      swal("Failed to update profile. Try again.");
     } finally {
       setLoading(false);
     }
@@ -51,7 +52,6 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Edit Profile Button */}
         {!editMode && (
           <button
             onClick={() => setEditMode(true)}
@@ -62,7 +62,6 @@ const Profile = () => {
         )}
       </div>
 
-      {/* Profile Stats */}
       <div className="stats stats-vertical lg:stats-horizontal shadow mt-6">
         <div className="stat">
           <div className="stat-title">Sessions Attended</div>
@@ -81,7 +80,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Edit Profile Section */}
       {editMode && (
         <div className="card bg-base-200 shadow-md mt-6 p-4">
           <h2 className="text-lg font-bold mb-4">Edit Your Profile</h2>
@@ -129,7 +127,6 @@ const Profile = () => {
         </div>
       )}
 
-      {/* Session History */}
       <div className="mt-10">
         <h2 className="text-xl font-bold mb-4">Session History</h2>
         <div className="overflow-x-auto">

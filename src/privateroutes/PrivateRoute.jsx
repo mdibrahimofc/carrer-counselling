@@ -5,8 +5,6 @@ import { AuthContext } from '../contextapi/ContextApi';
 const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext)
     const location = useLocation()
-    console.log(user, "user");
-    // console.log(loading);
     if(loading){
         return <p>loading...</p>
     }

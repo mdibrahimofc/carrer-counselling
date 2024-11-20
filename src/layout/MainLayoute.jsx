@@ -5,8 +5,8 @@ import Footer from '../components/Footer';
 
 const MainLayoute = () => {
     return (
-        <div>
-            <Navbar/>
+        <div className='relative'>
+            <Navbar className='sticky top-0'></Navbar>
             <div className='my-20 w-11/12 mx-auto'>
             <Outlet/>
             </div>

@@ -13,6 +13,7 @@ import PrivateRoute from "../privateroutes/PrivateRoute"
 import Profiler from "../privateroutes/Profile"
 import ServiceDetails from "../pages/ServiceDetails";
 import ServiceD from "../pages/ServiceD";
+import Profile from "../privateroutes/Profile";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <PrivateRoute><Profiler/></PrivateRoute>
+        element: <PrivateRoute><Profile/></PrivateRoute>
       },
       {
         path: 'serviceDetails/:id',
