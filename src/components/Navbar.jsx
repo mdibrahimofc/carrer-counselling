@@ -27,6 +27,16 @@ const Navbar = () => {
           Profile
         </NavLink>
       </li>
+      <li className="ml-6">
+        <NavLink
+          to="/careerplanner"
+          className={({ isActive }) =>
+            isActive ? "text-primary font-bold" : "hover:text-primary"
+          }
+        >
+          Career-Planner
+        </NavLink>
+      </li>
     </>
   );
 

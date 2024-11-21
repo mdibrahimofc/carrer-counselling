@@ -14,6 +14,7 @@ import Profiler from "../privateroutes/Profile"
 import ServiceDetails from "../pages/ServiceDetails";
 import ServiceD from "../pages/ServiceD";
 import Profile from "../privateroutes/Profile";
+import CareerPlanner from "../pages/CareerPlanner";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
         path: 'serviceDetails/:id',
         element: <PrivateRoute><ServiceDetails/></PrivateRoute>,
         loader: () => fetch('/services.json')
-      }
+      },
+      {
+        path: 'careerplanner',
+        element: <PrivateRoute><CareerPlanner/></PrivateRoute>,
+      },
     ]
   },
 ]);
