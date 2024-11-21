@@ -1,46 +1,45 @@
 import React, { useContext, useState } from "react";
-import loginImg from "../assets/cristofer-maximilian-NSKP7Gwa_I0-unsplash.jpg"
-import { Link, useNavigate } from "react-router-dom";
+import loginImg from "../assets/cristofer-maximilian-NSKP7Gwa_I0-unsplash.jpg";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../contextapi/ContextApi";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
-import { Navigate, useLocation } from 'react-router-dom';
-const Login = () => {
-  const {login, signInGoogle, user} = useContext(AuthContext)
-  const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation()
- const navigate = useNavigate()
 
- const handleGoogleLogin = () => {
-  signInGoogle()
-  .then(res => {
-    console.log(location);
-    navigate(location?.state?location?.state:'/')
-  })
- }
+const Login = () => {
+  const { login, signInGoogle } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [storeEmail, setStoreEmail] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state
+  console.log(from);
+  const handleGoogleLogin = () => {
+    signInGoogle()
+      .then(() => {
+        navigate(location?.state?.from || "/");
+      })
+      .catch((err) => swal(err.message));
+  };
+
   const handleLogin = (e) => {
-        e.preventDefault()
-        const email = e.target.email.value
-        const password = e.target.password.value
-        console.log(email, password);
-        login(email, password)
-        .then(res => {
-          console.log(res);
-          navigate(location?.state?location?.state:'/')
-        })
-        .catch(err => {
-          swal(err.message)
-        })
-  }
-  // if(user){
-  //   return <Navigate state={location?.pathname} replace to={`${location?.pathname?location?.pathname:'/'}`}></Navigate>
-  //   }
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    setStoreEmail(email); 
+
+    login(email, password)
+      .then((res) => {
+        navigate(location?.state?.from || "/");
+      })
+      .catch((err) => swal(err.message));
+  };
+
   return (
     <div className="flex h-screen bg-[#E9E9E9]">
       <Helmet>
-        <title>Login || Carrer Goals</title>
-    </Helmet>
+        <title>Login || Career Goals</title>
+      </Helmet>
       <div className="hidden md:flex w-1/2 justify-center items-center">
         <img
           src={loginImg}
@@ -60,18 +59,23 @@ const Login = () => {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Email</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 required
                 name="email"
+                onChange={(e) => setStoreEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-black"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Password</label>
+              <label className="block text-gray-700 font-medium mb-1">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -90,16 +94,24 @@ const Login = () => {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <a href="#" className="text-gray-600 hover:underline">
-                Forgot password?
-              </a>
+              <Link
+                to="/resetpassword"
+                state={{ email: storeEmail }}
+              >
+                <span className="text-gray-600 hover:underline">
+                  Forgot password?
+                </span>
+              </Link>
             </div>
 
             <button className="btn btn-black w-full">Log In</button>
           </form>
 
           <div>
-          <button onClick={handleGoogleLogin} className="btn btn-outline btn-primary w-full mt-2">
+            <button
+              onClick={handleGoogleLogin}
+              className="btn btn-outline btn-primary w-full mt-2"
+            >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
                 alt="Google Logo"
@@ -111,7 +123,7 @@ const Login = () => {
 
           <p className="text-center text-sm text-gray-600 mt-4">
             Don’t have an account?{" "}
-            <Link to='/register' className="text-primary hover:underline">
+            <Link to="/register" className="text-primary hover:underline">
               Sign up
             </Link>
           </p>

@@ -25,8 +25,8 @@ const ServiceDetails = () => {
     const comment = e.target.comment.value;
     const stars = e.target.stars.value;
     setFeedback([...feedback, { comment, stars }]);
-    e.target.comment.value = '';
-    e.target.stars.value = '1';
+    e.target.comment.value = "";
+    e.target.stars.value = "1";
   };
 
   return (
@@ -51,7 +51,8 @@ const ServiceDetails = () => {
 
           <div className="mt-6 flex justify-between items-center text-gray-600">
             <p>
-              <span className="font-semibold">Price:</span> <span className="font-semibold text-green-600">{pricing}</span>
+              <span className="font-semibold">Price:</span>{" "}
+              <span className="font-semibold text-green-600">{pricing}</span>
             </p>
             <p className="transition-all duration-300 hover:text-green-600">
               <span className="font-semibold">Duration:</span> {duration}
@@ -81,7 +82,10 @@ const ServiceDetails = () => {
             </p>
             {feedback.length > 0 ? (
               feedback.map((f, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg my-2 shadow-md">
+                <div
+                  key={index}
+                  className="bg-gray-50 p-4 rounded-lg my-2 shadow-md"
+                >
                   <div className="flex items-center mb-2">
                     <div className="flex gap-1 text-yellow-500">
                       {[...Array(5)].map((_, i) => (
@@ -97,13 +101,19 @@ const ServiceDetails = () => {
                         </svg>
                       ))}
                     </div>
-                    <span className="ml-2 text-gray-600">Rated by User {index + 1}</span>
+                    <span className="ml-2 text-gray-600">
+                      Rated by User {index + 1}
+                    </span>
                   </div>
-                  <p className="text-gray-500 transition-all duration-300 hover:text-gray-700">{f.comment}</p>
+                  <p className="text-gray-500 transition-all duration-300 hover:text-gray-700">
+                    {f.comment}
+                  </p>
                 </div>
               ))
             ) : (
-              <p className="text-gray-400">No feedback yet. Be the first to review!</p>
+              <p className="text-gray-400">
+                No feedback yet. Be the first to review!
+              </p>
             )}
           </div>
 
@@ -114,8 +124,14 @@ const ServiceDetails = () => {
             <form onSubmit={handleFeedback} className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
                 {/* Star Rating */}
-                <div className="flex items-center gap-2">
-                  <label htmlFor="stars" className="font-semibold text-gray-700">Rate the service: </label>
+                <div className="flex flex-col md:flex-row items-center gap-2">
+                  <div>
+                  <label
+                    htmlFor="stars"
+                    className="font-semibold text-gray-700"
+                  >
+                    Rate the service:{" "}
+                  </label>
                   <select
                     name="stars"
                     id="stars"
@@ -128,18 +144,24 @@ const ServiceDetails = () => {
                     <option value="4">4 Stars</option>
                     <option value="5">5 Stars</option>
                   </select>
-                </div>
+                  </div>
 
-                <input
-                  type="text"
-                  name="comment"
-                  placeholder="Type your feedback here"
-                  className="input input-bordered input-lg w-full max-w-xl focus:outline-none transition-all duration-300 ease-in-out hover:shadow-xl"
-                  required
-                />
-                <button type="submit" className="btn btn-primary px-6 hover:bg-blue-700 transition-all duration-300">
-                  Submit Feedback
-                </button>
+                  <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <input
+                      type="text"
+                      name="comment"
+                      placeholder="Type your feedback here"
+                      className="input input-bordered input-lg w-full max-w-xl focus:outline-none transition-all duration-300 ease-in-out hover:shadow-xl"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="btn btn-primary px-6 hover:bg-blue-700 transition-all duration-300"
+                    >
+                      Submit Feedback
+                    </button>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contextapi/ContextApi";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isHovered, setIsHovered] = useState(false);
 
   const links = (
     <>
@@ -80,11 +81,21 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="flex items-center space-x-4">
-            <img
-              className="w-10 h-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-              src={user?.photoURL || "https://via.placeholder.com/150"}
-              alt="User Avatar"
-            />
+            <div className="relative inline-block">
+              <img
+                className="w-10 h-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                src={user?.photoURL || "https://via.placeholder.com/150"}
+                alt="User Avatar"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              />
+
+              {isHovered && (
+                <div className="absolute top-full mb-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-100 transition-opacity">
+                  {user?.displayName || "User Name"}
+                </div>
+              )}
+            </div>
             <button className="btn btn-primary" onClick={logout}>
               Log out
             </button>

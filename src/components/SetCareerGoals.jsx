@@ -8,7 +8,7 @@ const SetCareerGoals = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!shortTermGoal || !longTermGoal) {
-      alert("Please fill out both goals!");
+      swal("Please fill out both goals!");
       return;
     }
     const newGoal = {

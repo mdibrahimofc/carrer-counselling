@@ -1,3 +1,4 @@
+import Feedback from "../components/Feedback";
 import ResourceRecommendations from "../components/ResourceRecommendations";
 import SetCareerGoals from "../components/SetCareerGoals";
 import TrackProgress from "../components/TrackProgress";
@@ -10,6 +11,7 @@ const CareerPlanner = () => {
             <TrackProgress/>r
             </div>
             <ResourceRecommendations/>
+            <Feedback/>
         </div>
     );
 };

@@ -8,7 +8,7 @@ const TrackProgress = () => {
   const handleAddProgress = (e) => {
     e.preventDefault();
     if (!goal || progress < 0 || progress > 100) {
-      alert("Please enter a valid goal and progress percentage (0-100).");
+      swal("Please enter a valid goal and progress percentage (0-100).");
       return;
     }
 

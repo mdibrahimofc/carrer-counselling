@@ -15,6 +15,7 @@ import ServiceDetails from "../pages/ServiceDetails";
 import ServiceD from "../pages/ServiceD";
 import Profile from "../privateroutes/Profile";
 import CareerPlanner from "../pages/CareerPlanner";
+import Reset from "../pages/Reset";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: 'careerplanner',
         element: <PrivateRoute><CareerPlanner/></PrivateRoute>,
       },
+      {
+        path: 'resetpassword',
+        element: <Reset/>,
+      }
     ]
   },
 ]);
