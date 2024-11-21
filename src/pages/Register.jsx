@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../contextapi/ContextApi";
 import loginImg from "../assets/original-0c14504bd291054d76548cb015dff89a.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet";
@@ -12,6 +12,7 @@ const Register = () => {
   const [uppercase, setUppercase] = useState(false);
   const [lowercase, setLowercase] = useState(false);
   const [minLength, setMinLength] = useState(false);
+  const navigate = useNavigate()
 
   const { createAccount, profileUpdate } = useContext(AuthContext);
 
@@ -28,6 +29,7 @@ const Register = () => {
       .then((res) => {
         profileUpdate(name.value, photo.value)
           .then((res) => {
+            navigate('/')
           })
           .catch((err) => {
           });

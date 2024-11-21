@@ -6,34 +6,35 @@ const SuccessStories = () => {
     {
       name: "John Doe",
       story: "Thanks to the career counseling sessions, I found my dream job as a software engineer. The personalized advice helped me focus on the right skills.",
-      image: "https://placeimg.com/100/100/people/1",
+      image: "https://i.ibb.co/MgGw5xJ/istockphoto-1435745704-2048x2048.jpg",
     },
     {
       name: "Jane Smith",
       story: "The resume review service was amazing! My resume now stands out, and I've been getting more interview calls.",
-      image: "https://placeimg.com/100/100/people/2",
+      image: "https://i.ibb.co/hVKC1L3/istockphoto-1409751960-2048x2048.jpg",
     },
     {
       name: "Sam Wilson",
       story: "The counseling session helped me gain clarity on my career path. Now, I’m working in a field I’m passionate about.",
-      image: "https://placeimg.com/100/100/people/3",
+      image: "https://i.ibb.co/b3mRPsr/istockphoto-1388648617-2048x2048.jpg",
     },
     {
       name: "Emily Johnson",
       story: "The career coaching sessions were exactly what I needed. They helped me discover new career opportunities and taught me how to network effectively.",
-      image: "https://placeimg.com/100/100/people/4",
+      image: "https://i.ibb.co/J2KHjtx/istockphoto-1399565382-2048x2048.jpg",
     },
     {
       name: "Michael Brown",
       story: "I was unsure about my career choices, but after a few counseling sessions, I’ve decided to pursue a career in marketing. It’s been an eye-opening experience.",
-      image: "https://placeimg.com/100/100/people/5",
+      image: "https://i.ibb.co/6DXbhfF/istockphoto-1485546774-2048x2048.jpg",
     },
     {
       name: "Sophia Lee",
       story: "The resume and LinkedIn profile review helped me land my first job after graduation. I’m so grateful for the guidance I received!",
-      image: "https://placeimg.com/100/100/people/6",
+      image: "https://i.ibb.co/0mzk1xN/istockphoto-1364917563-612x612-2.jpg",
     },
   ];
+  
   
 
   return (
