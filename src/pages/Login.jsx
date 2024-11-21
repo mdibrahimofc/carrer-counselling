@@ -12,12 +12,10 @@ const Login = () => {
   const [storeEmail, setStoreEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location?.state
-  console.log(from);
   const handleGoogleLogin = () => {
     signInGoogle()
       .then(() => {
-        navigate(location?.state?.from || "/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((err) => swal(err.message));
   };
@@ -30,7 +28,7 @@ const Login = () => {
 
     login(email, password)
       .then((res) => {
-        navigate(location?.state?.from || "/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((err) => swal(err.message));
   };
