@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 const Login = () => {
   const { login, signInGoogle } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [storeEmail, setStoreEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const handleGoogleLogin = () => {
@@ -23,6 +24,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    setStoreEmail(email); 
 
     login(email, password)
       .then((res) => {
