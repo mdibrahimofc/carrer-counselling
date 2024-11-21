@@ -6,8 +6,7 @@ const Reset = () => {
   const email = location?.state?.email || "";
 
   const handleReset = () => {
-    // Add your reset logic here
-    console.log("Resetting password for:", email);
+    
     alert(`Reset link sent to: ${email}`);
   };
 

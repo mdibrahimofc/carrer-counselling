@@ -26,17 +26,13 @@ const Register = () => {
 
     createAccount(email.value, password.value)
       .then((res) => {
-        console.log(res.user);
         profileUpdate(name.value, photo.value)
           .then((res) => {
-            console.log(res);
           })
           .catch((err) => {
-            console.log(err.message);
           });
       })
       .catch((err) => {
-        console.error("Error creating account:", err);
       });
   };
 

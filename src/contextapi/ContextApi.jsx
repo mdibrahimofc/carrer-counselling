@@ -11,7 +11,6 @@ const ContextApi = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setLoading(false)
             setUser(currentUser)
-            // console.log(user);
         })
         return () => unsubscribe()
     }, [])
