@@ -2,6 +2,14 @@
 
 ![Screenshot of Homepage](https://i.ibb.co/d0Hd1W7M/Screenshot-2025-02-05-151452.png)
 
+## 📖 About Career Counselling  
+The **Career Counselling Website** helps individuals explore career paths and connect with expert mentors for personalized guidance. Whether you're a student, job seeker, or professional, our platform provides insights to make informed career decisions.  
+
+### 🚀 Why Choose Us?  
+- **Expert Mentorship** – Get career advice from industry professionals.  
+- **Diverse Career Paths** – Explore various professions and job trends.  
+- **Fast & Secure** – Built with **React, Vite, and Firebase** for a smooth experience.  
+
 ## 🚀 Project Overview
 Career Counselling is a modern and responsive website designed to provide career guidance and counselling services. The platform allows users to seek career advice from expert mentors and explore various career paths. It is built with **React, Vite, Tailwind CSS, and Firebase**, ensuring a fast and seamless experience.
 
@@ -45,3 +53,65 @@ This project includes the following dependencies, as listed in `package.json`:
   "sweetalert": "^2.1.2",
   "swiper": "^11.1.14"
 }
+```
+
+## 🏗 How to Run the Project Locally
+Follow these steps to run the project on your local machine:
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/career-counselling.git
+cd career-counselling
+```
+
+### 2️⃣ Install Dependencies
+Ensure you have Node.js installed, then run:
+```bash
+npm install
+```
+
+### 3️⃣ Configure Environment Variables
+Create a `.env` file in the root directory and add your Firebase configuration:
+```env
+VITE_apiKey=your_firebase_api_key
+VITE_authDomain=your_project_authDomain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storage_bucket
+VITE_messagingSenderId=your_messaging_sender_id
+VITE_appId=your_app_id
+```
+
+### 4️⃣ Start the Development Server
+```bash
+npm run dev
+```
+The application will be available at **http://localhost:5173** (or the port specified by Vite).
+
+### 5️⃣ Build for Production
+To create a production-ready build:
+```bash
+npm run build
+npm run preview
+```
+
+## 🖥️ Local Machine Run Overview
+After running the project locally, you will experience the following:
+
+✅ Homepage with career guidance options  
+✅ User authentication system (Login/Signup using Firebase)  
+✅ Dynamic career categories with real-time data fetching  
+✅ Smooth navigation with React Router  
+✅ Interactive UI components with Tailwind CSS and DaisyUI  
+✅ Career mentorship booking system (if implemented)  
+
+**Here’s a sample screenshot of the local run:** *(Replace this with an actual screenshot from your local project)*
+
+## 🌍 Live Website
+Experience the website live at:
+🔗 [Career Counselling Live Site](https://carrer-counselling-c1f6f.web.app/)
+
+## 📚 Additional Resources
+- [React Documentation](https://react.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
