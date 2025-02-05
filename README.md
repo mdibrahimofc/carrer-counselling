@@ -44,15 +44,13 @@ This project includes the following dependencies, as listed in `package.json`:
   "sort-by": "^1.2.0",
   "sweetalert": "^2.1.2",
   "swiper": "^11.1.14"
-}
+} ```
 
 ###🏗 How to Run the Project Locally
 Follow these steps to run the project on your local machine:
 
 ##1️⃣ Clone the Repository
 bash
-Copy
-Edit
 git clone https://github.com/your-username/career-counselling.git
 cd career-counselling
 ##2️⃣ Install Dependencies
