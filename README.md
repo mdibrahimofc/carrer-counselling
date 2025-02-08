@@ -1,6 +1,6 @@
 # Career Counselling Website
 
-![Screenshot of Homepage](https://i.imgur.com/7WSQJUs.png)
+![Screenshot of Homepage](https://i.imgur.com/2vG2r9M.png)
 
 ## 📖 About Career Counselling  
 The **Career Counselling Website** helps individuals explore career paths and connect with expert mentors for personalized guidance. Whether you're a student, job seeker, or professional, our platform provides insights to make informed career decisions.  
